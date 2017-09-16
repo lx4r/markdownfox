@@ -1,17 +1,14 @@
 <template>
   <div id="wrapper">
-    <main v-if="documentOpen">
+    <main>
       <div v-html="renderedMD" class="markdown-body"></div>
     </main>
-    <div v-else id="welcome">
-      Welcome to MarkDawn
-    </div>
   </div>
 </template>
 
 <script>
   const fs = require('fs')
-  const testFile = '/Users/lx4r/Desktop/test.md'
+  const ipcRenderer = require('electron').ipcRenderer
 
   let marked = require('marked')
   // Synchronous highlighting with highlight.js
@@ -22,18 +19,30 @@
   });
 
   let mainData = {
-    renderedMD: "",
-    documentOpen: true
+    renderedMD: "Welcome to MarkDawn :)",
   }
-  fs.watch(testFile, function (eventType, fileName) {
-    fs.readFile(testFile, 'utf8', function (err, data) {
+
+  ipcRenderer.on('markdawn-load-file', (event, arg) => {
+    const filePath = arg[0]
+    renderMDFromFile(filePath)
+    startFileWatcher(filePath)
+  })
+
+  function startFileWatcher (filePath) {
+    fs.watch(filePath, function (eventType, fileName) {
+      renderMDFromFile(filePath)
+    })
+  }
+
+  function renderMDFromFile (filePath) {
+    fs.readFile(filePath, 'utf8', function (err, data) {
       if (err) {
         console.error(err)
       } else {
         mainData.renderedMD = marked(data)
       }
     })
-  })
+  }
 
   export default {
     name: 'landing-page',
@@ -41,9 +50,6 @@
       open (link) {
         this.$electron.shell.openExternal(link)
       },
-      rerenderMD (newMD) {
-        this.renderedMD = marked(newMD)
-      }
     },
     data: function () {
       return mainData

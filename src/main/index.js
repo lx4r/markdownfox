@@ -35,7 +35,9 @@ function createWindow () {
         {
           label: 'Open',
           click () {
-            console.log(dialog.showOpenDialog({properties: ['openFile', 'openDirectory', 'multiSelections']}))
+            const newFilePath = dialog.showOpenDialog({properties: ['openFile', 'openDirectory', 'multiSelections']})
+            mainWindow.webContents.send('markdawn-load-file', newFilePath)
+            console.log("sent")
           }
         }
       ]
