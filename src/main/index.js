@@ -1,6 +1,7 @@
 'use strict'
 
 import { app, BrowserWindow, Menu, dialog } from 'electron'
+const fs = require('fs')
 
 /**
  * Set `__static` path to static files in production
@@ -30,14 +31,36 @@ function createWindow () {
   // MENU TESTING
   const template = [
     {
+      label: 'MarkDawn',
+      submenu: [
+        {role: 'quit'}
+      ]
+    },
+    {
       label: 'File',
       submenu: [
         {
           label: 'Open',
           click () {
-            const newFilePath = dialog.showOpenDialog({properties: ['openFile', 'openDirectory', 'multiSelections']})
+            const newFilePath = dialog.showOpenDialog({properties: ['openFile']})
             mainWindow.webContents.send('markdawn-load-file', newFilePath)
-            console.log("sent")
+          }
+        },
+        {
+          label: 'Export to PDF',
+          click () {
+            mainWindow.webContents.printToPDF({}, function (err, data) {
+              if (err) {
+                console.error(err)
+              } else {
+                const newFilePath = dialog.showSaveDialog({})
+                fs.writeFile(newFilePath, data, function (err) {
+                  if (err) {
+                    console.error(err)
+                  }
+                })
+              }
+            })
           }
         }
       ]
