@@ -26,6 +26,8 @@ npm run lint
 ## Credits
 
 - Photo by [Ales Krivec](https://unsplash.com/photos/dRQhhIdaCBU?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on Unsplash
+- [Marked](https://github.com/chjj/marked) by chjj
+- [highlight.js](https://github.com/isagalaev/highlight.js) by isagalaev
 
 ---
 

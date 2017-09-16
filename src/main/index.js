@@ -1,6 +1,6 @@
 'use strict'
 
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, Menu, dialog } from 'electron'
 
 /**
  * Set `__static` path to static files in production
@@ -26,6 +26,68 @@ function createWindow () {
   })
 
   mainWindow.loadURL(winURL)
+
+  // MENU TESTING
+  const template = [
+    {
+      label: 'File',
+      submenu: [
+        {
+          label: 'Open',
+          click () {
+            console.log(dialog.showOpenDialog({properties: ['openFile', 'openDirectory', 'multiSelections']}))
+          }
+        }
+      ]
+    },
+    {
+      label: 'Edit',
+      submenu: [
+        {role: 'undo'},
+        {role: 'redo'},
+        {type: 'separator'},
+        {role: 'cut'},
+        {role: 'copy'},
+        {role: 'paste'},
+        {role: 'pasteandmatchstyle'},
+        {role: 'delete'},
+        {role: 'selectall'}
+      ]
+    },
+    {
+      label: 'View',
+      submenu: [
+        {role: 'reload'},
+        {role: 'forcereload'},
+        {role: 'toggledevtools'},
+        {type: 'separator'},
+        {role: 'resetzoom'},
+        {role: 'zoomin'},
+        {role: 'zoomout'},
+        {type: 'separator'},
+        {role: 'togglefullscreen'}
+      ]
+    },
+    {
+      role: 'window',
+      submenu: [
+        {role: 'minimize'},
+        {role: 'close'}
+      ]
+    },
+    {
+      role: 'help',
+      submenu: [
+        {
+          label: 'Learn More',
+          click () { require('electron').shell.openExternal('https://github.com/lx4r/markdawn') }
+        }
+      ]
+    }
+  ]
+
+  const menu = Menu.buildFromTemplate(template)
+  Menu.setApplicationMenu(menu)
 
   mainWindow.on('closed', () => {
     mainWindow = null
