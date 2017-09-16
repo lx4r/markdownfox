@@ -43,7 +43,10 @@ function createWindow () {
           label: 'Open',
           click () {
             const newFilePath = dialog.showOpenDialog({properties: ['openFile']})
-            mainWindow.webContents.send('markdawn-load-file', newFilePath)
+            if (newFilePath !== undefined){ // if newFilePath is undefined the user canceled the open dialog
+              // user opened a file
+              mainWindow.webContents.send('markdawn-load-file', newFilePath)
+            }
           }
         },
         {
@@ -54,11 +57,13 @@ function createWindow () {
                 console.error(err)
               } else {
                 const newFilePath = dialog.showSaveDialog({})
-                fs.writeFile(newFilePath, data, function (err) {
-                  if (err) {
-                    console.error(err)
-                  }
-                })
+                if (newFilePath !== undefined) { // if newFilePath is undefined the user canceled the save dialog
+                  fs.writeFile(newFilePath, data, function (err) {
+                    if (err) {
+                      console.error(err)
+                    }
+                  })
+                }
               }
             })
           }
