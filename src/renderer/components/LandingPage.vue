@@ -183,7 +183,7 @@
     const newRenderer = new marked.Renderer()
     // modified image render method to fix image path
     newRenderer.image = function (href, title, text) {
-      const modifiedHref = dirPath + path.sep + href
+      const modifiedHref = path.resolve(dirPath, href)
       let out = '<img src="' + modifiedHref + '" alt="' + text + '"'
       if (title) {
         out += ' title="' + title + '"'
