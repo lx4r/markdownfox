@@ -8,6 +8,18 @@
       MarkDawn will then watch for changes to the file and update the preview.<br>
       PDF export is also available from the "File" menu.
     </div>
+    <dialog class="mdl-dialog">
+      <h4 class="mdl-dialog__title">Allow data collection?</h4>
+      <div class="mdl-dialog__content">
+        <p>
+          Allowing us to collect data will let us get you the information you want faster.
+        </p>
+      </div>
+      <div class="mdl-dialog__actions">
+        <button type="button" class="mdl-button">Agree</button>
+        <button type="button" class="mdl-button close">Disagree</button>
+      </div>
+    </dialog>
   </div>
 </template>
 
@@ -34,6 +46,14 @@
     renderMDFromFile(filePath)
     startFileWatcher(filePath)
     mainData.fileOpen = true
+  })
+
+  const dialog = document.querySelector('dialog');
+  dialog.querySelector('.close').addEventListener('click', function() {
+    dialog.close();
+  });
+  ipcRenderer.on('show-licenses', (event, arg) => {
+    dialog.showModal();
   })
 
   function startFileWatcher (filePath) {

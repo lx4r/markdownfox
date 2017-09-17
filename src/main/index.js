@@ -112,7 +112,11 @@ function createWindow () {
       role: 'help',
       submenu: [
         {
-          label: 'Learn More',
+          label: 'Open Source licenses',
+          click () { mainWindow.webContents.send('show-licenses') }
+        },
+        {
+          label: 'MarkDawn on Github',
           click () { require('electron').shell.openExternal('https://github.com/lx4r/markdawn') }
         }
       ]
