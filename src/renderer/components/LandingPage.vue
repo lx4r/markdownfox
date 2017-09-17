@@ -1,14 +1,13 @@
 <template>
   <div id="wrapper">
-    <main>
-      <div v-if="fileOpen" v-html="renderedMD" class="markdown-body"></div>
-      <div v-else class="markdown-body">
-        <img src="~@/assets/background_small.jpg"><br>
-        <b>Welcome to MarkDawn :)</b><br>
-        Open a Markdown file from the "File" menu to render it. <br>
-        MarkDawn will then watch for changes to the file and update the preview.
-      </div>
-    </main>
+    <div v-if="fileOpen" v-html="renderedMD" class="markdown-body"></div>
+    <div v-else class="markdown-body">
+      <img src="~@/assets/background_small.jpg"><br>
+      <b>Welcome to MarkDawn :)</b><br>
+      Open a Markdown file from the "File" menu to render it. <br>
+      MarkDawn will then watch for changes to the file and update the preview.<br>
+      PDF export is also available from the "File" menu.
+    </div>
   </div>
 </template>
 

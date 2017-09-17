@@ -52,7 +52,10 @@ function createWindow () {
         {
           label: 'Export to PDF',
           click () {
-            mainWindow.webContents.printToPDF({}, function (err, data) {
+            mainWindow.webContents.printToPDF({
+              printBackground: true,
+              marginsType: 0
+            }, function (err, data) {
               if (err) {
                 console.error(err)
               } else {
