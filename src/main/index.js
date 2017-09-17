@@ -43,7 +43,7 @@ function createWindow () {
           label: 'Open',
           click () {
             const newFilePath = dialog.showOpenDialog({properties: ['openFile']})
-            if (newFilePath !== undefined){ // if newFilePath is undefined the user canceled the open dialog
+            if (newFilePath !== undefined) { // if newFilePath is undefined the user canceled the open dialog
               // user opened a file
               mainWindow.webContents.send('markdawn-load-file', newFilePath)
             }
@@ -112,7 +112,11 @@ function createWindow () {
       role: 'help',
       submenu: [
         {
-          label: 'Learn More',
+          label: 'Open Source licenses',
+          click () { mainWindow.webContents.send('show-licenses') }
+        },
+        {
+          label: 'MarkDawn on Github',
           click () { require('electron').shell.openExternal('https://github.com/lx4r/markdawn') }
         }
       ]
