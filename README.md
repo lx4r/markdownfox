@@ -1,6 +1,6 @@
-# markdawn
+# MarkDawn
 
-> a simple markdown previewer
+> a simple Markdown viewer with PDF export Edit
 
 ## Build Setup
 
