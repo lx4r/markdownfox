@@ -164,16 +164,9 @@
 
 <script>
   const fs = require('fs')
+  const path = require('path')
   const ipcRenderer = require('electron').ipcRenderer
   const marked = require('marked')
-
-  // Synchronous highlighting with highlight.js
-  marked.setOptions({
-    highlight: function (code) {
-      return require('highlight.js').highlightAuto(code).value
-    }
-
-  })
 
   let mainData = {
     renderedMD: '',
@@ -182,9 +175,31 @@
 
   ipcRenderer.on('markdawn-load-file', (event, arg) => {
     const filePath = arg[0]
+    const dirPath = path.dirname(filePath)
     renderMDFromFile(filePath)
     startFileWatcher(filePath)
     mainData.fileOpen = true
+
+    const newRenderer = new marked.Renderer()
+    // modified image render method to fix image path
+    newRenderer.image = function (href, title, text) {
+      const modifiedHref = dirPath + path.sep + href
+      let out = '<img src="' + modifiedHref + '" alt="' + text + '"'
+      if (title) {
+        out += ' title="' + title + '"'
+      }
+      out += this.options.xhtml ? '/>' : '>'
+      console.log(out)
+      return out
+    }
+    // enable highlighting and set modified renderer
+    // this is done for every file as the image render method has to be adapted to the file path
+    marked.setOptions({
+      highlight: function (code) {
+        return require('highlight.js').highlightAuto(code).value
+      },
+      renderer: newRenderer
+    })
   })
 
   function startFileWatcher (filePath) {
