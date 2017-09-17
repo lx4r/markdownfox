@@ -23,12 +23,17 @@ npm run lint
 
 ```
 
-## Credits
+## Powered by
 
+- [Vue.js](https://vuejs.org/)
+- [Electron](https://electron.atom.io/)
+- [Electron-Vue](https://github.com/SimulatedGREG/electron-vue) by SimulatedGREG
 - Photo by [Ales Krivec](https://unsplash.com/photos/dRQhhIdaCBU?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on Unsplash
 - [Marked](https://github.com/chjj/marked) by chjj
 - [highlight.js](https://github.com/isagalaev/highlight.js) by isagalaev
 - [github-markdown-css](https://github.com/sindresorhus/github-markdown-css) by sindresorhus
+
+Open Source licenses can be found in `OPENSOURCE_LICENSES`
 
 ---
 
