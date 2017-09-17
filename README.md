@@ -2,6 +2,8 @@
 
 > a simple Markdown viewer with PDF export Edit
 
+[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
+
 ## Build Setup
 
 ``` bash
