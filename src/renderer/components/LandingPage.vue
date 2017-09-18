@@ -8,9 +8,9 @@
       MarkDawn will then watch for changes to the file and update the preview.<br>
       PDF export is also available from the "File" menu.
     </div>
-    <dialog class="mdl-dialog" id="oss-licenses">
-      <h4 class="mdl-dialog__title">Open Source licenses</h4>
-      <div class="mdl-dialog__content">
+    <dialog class="markdown-body" id="oss-licenses">
+      <h2>Open Source licenses</h2>
+      <div>
         <p id="oss-licenses-text">
           License for Vue.js:<br>
           <br>
