@@ -66,7 +66,12 @@ function createWindow () {
                 if (newFilePath !== undefined) { // if newFilePath is undefined the user canceled the save dialog
                   fs.writeFile(newFilePath, data, function (err) {
                     if (err) {
-                      console.error(err)
+                      if (err.errno === (-4082)) {
+                        const resourceBusyMessage = 'The resource is busy e.g. because the PDF is opened in a PDF viewer.'
+                        mainWindow.webContents.send('show-error', resourceBusyMessage)
+                      } else {
+                        mainWindow.webContents.send('show-error', err.message)
+                      }
                     }
                   })
                 }

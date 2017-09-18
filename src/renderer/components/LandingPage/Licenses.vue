@@ -158,7 +158,7 @@
     name: 'licenses',
     mounted: function () {
       // register licenses dialog
-      const dialog = document.querySelector('dialog')
+      const dialog = document.querySelector('#oss-licenses')
       console.log(dialog)
       dialog.querySelector('.close').addEventListener('click', function () {
         dialog.close()
@@ -176,7 +176,6 @@
         height: 80vh;
         border: 1px solid black;
     }
-
     #oss-licenses-text {
         overflow-y: scroll;
         height: 50vh;

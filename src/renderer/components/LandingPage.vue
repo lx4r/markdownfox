@@ -9,11 +9,13 @@
       PDF export is also available from the "File" menu.
     </div>
     <licenses></licenses>
+    <error-modal></error-modal>
   </div>
 </template>
 
 <script>
   import Licenses from './LandingPage/Licenses.vue'
+  import ErrorModal from './LandingPage/ErrorModal.vue'
   const fs = require('fs')
   const path = require('path')
   const ipcRenderer = require('electron').ipcRenderer
@@ -71,7 +73,7 @@
 
   export default {
     name: 'landing-page',
-    components: {Licenses},
+    components: {Licenses, ErrorModal},
     methods: {
       open (link) {
         this.$electron.shell.openExternal(link)
