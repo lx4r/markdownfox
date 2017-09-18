@@ -1,6 +1,6 @@
 # MarkDawn
 
-> a simple Markdown viewer with PDF export Edit
+> a simple Markdown viewer with PDF export
 
 [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
 
