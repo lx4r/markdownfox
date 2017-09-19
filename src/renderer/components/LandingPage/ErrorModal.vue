@@ -1,8 +1,7 @@
 <template>
     <dialog class="markdown-body" id="error-modal">
         <h3 id="error-heading">Error</h3>
-        <div>
-            {{errorMsg}}
+        <div v-html="errorMsg">
         </div>
         <div>
             <button type="button" class="mdl-button close">Close</button>
@@ -42,7 +41,7 @@
     }
     #error-modal {
         width: 50vw;
-        height: 30vh;
+        height: 35vh;
         border: 1px solid black;
         padding-top: 10px;
     }
