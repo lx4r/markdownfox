@@ -1,7 +1,7 @@
 'use strict'
 
+import {startFileWatcher, sendFileContentsToView, saveDataToFile} from './fileHandling'
 import { app, BrowserWindow, Menu, dialog } from 'electron'
-const fs = require('fs')
 
 /**
  * Set `__static` path to static files in production
@@ -17,6 +17,8 @@ const winURL = process.env.NODE_ENV === 'development'
   : `file://${__dirname}/index.html`
 
 function createWindow () {
+  let fileWatcher = null
+
   /**
    * Initial window options
    */
@@ -47,8 +49,12 @@ function createWindow () {
           click () {
             const newFilePath = dialog.showOpenDialog({properties: ['openFile']})
             if (newFilePath !== undefined) { // if newFilePath is undefined the user canceled the open dialog
-              // user opened a file
-              mainWindow.webContents.send('markdawn-load-file', newFilePath)
+              sendFileContentsToView(newFilePath[0], mainWindow)
+              if (fileWatcher) {
+                // stop old file watcher before starting a new one
+                fileWatcher.close()
+              }
+              fileWatcher = startFileWatcher(newFilePath[0], mainWindow)
             }
           }
         },
@@ -64,16 +70,7 @@ function createWindow () {
               } else {
                 const newFilePath = dialog.showSaveDialog({})
                 if (newFilePath !== undefined) { // if newFilePath is undefined the user canceled the save dialog
-                  fs.writeFile(newFilePath, data, function (err) {
-                    if (err) {
-                      if (err.errno === (-4082)) {
-                        const resourceBusyMessage = 'The resource is busy e.g. because the PDF is opened in a PDF viewer.'
-                        mainWindow.webContents.send('show-error', resourceBusyMessage)
-                      } else {
-                        mainWindow.webContents.send('show-error', err.message)
-                      }
-                    }
-                  })
+                  saveDataToFile(newFilePath, mainWindow, data)
                 }
               }
             })

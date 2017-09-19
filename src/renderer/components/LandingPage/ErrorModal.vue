@@ -2,7 +2,6 @@
     <dialog class="markdown-body" id="error-modal">
         <h3 id="error-heading">Error</h3>
         <div>
-            The PDF file could not be saved.<br>
             {{errorMsg}}
         </div>
         <div>
@@ -20,7 +19,7 @@
   export default {
     name: 'error-modal',
     mounted: function () {
-      // register licenses dialog
+      // register error dialog
       const dialog = document.querySelector('#error-modal')
       dialog.querySelector('.close').addEventListener('click', function () {
         dialog.close()
