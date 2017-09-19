@@ -55,6 +55,8 @@
         },
         renderer: newRenderer
       })
+
+      mainData.renderedMD = marked(data)
     }
   })
 
