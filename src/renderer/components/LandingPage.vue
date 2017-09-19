@@ -9,69 +9,60 @@
       PDF export is also available from the "File" menu.
     </div>
     <licenses></licenses>
+    <error-modal></error-modal>
   </div>
 </template>
 
 <script>
   import Licenses from './LandingPage/Licenses.vue'
-  const fs = require('fs')
+  import ErrorModal from './LandingPage/ErrorModal.vue'
   const path = require('path')
   const ipcRenderer = require('electron').ipcRenderer
   const marked = require('marked')
+
+  let currentFilePath = null
 
   let mainData = {
     renderedMD: '',
     fileOpen: false
   }
 
-  ipcRenderer.on('markdawn-load-file', (event, arg) => {
-    const filePath = arg[0]
-    const dirPath = path.dirname(filePath)
-    renderMDFromFile(filePath)
-    startFileWatcher(filePath)
-    mainData.fileOpen = true
+  ipcRenderer.on('file-contents', (event, filePath, data) => {
+    if (currentFilePath === filePath) {
+      // file was updated
+      mainData.renderedMD = marked(data)
+    } else {
+      // a new file was loaded
+      mainData.fileOpen = true
 
-    const newRenderer = new marked.Renderer()
-    // modified image render method to fix image path
-    newRenderer.image = function (href, title, text) {
-      const modifiedHref = path.resolve(dirPath, href)
-      let out = '<img src="' + modifiedHref + '" alt="' + text + '"'
-      if (title) {
-        out += ' title="' + title + '"'
+      // build modified image render method to fix image path
+      const dirPath = path.dirname(filePath)
+      const newRenderer = new marked.Renderer()
+      newRenderer.image = function (href, title, text) {
+        const modifiedHref = path.resolve(dirPath, href)
+        let out = '<img src="' + modifiedHref + '" alt="' + text + '"'
+        if (title) {
+          out += ' title="' + title + '"'
+        }
+        out += this.options.xhtml ? '/>' : '>'
+        return out
       }
-      out += this.options.xhtml ? '/>' : '>'
-      console.log(out)
-      return out
+      // enable highlighting and set modified renderer
+      // this is done for every file as the image render method has to be adapted to the file path
+      marked.setOptions({
+        highlight: function (code) {
+          return require('highlight.js').highlightAuto(code).value
+        },
+        renderer: newRenderer
+      })
+
+      mainData.renderedMD = marked(data)
     }
-    // enable highlighting and set modified renderer
-    // this is done for every file as the image render method has to be adapted to the file path
-    marked.setOptions({
-      highlight: function (code) {
-        return require('highlight.js').highlightAuto(code).value
-      },
-      renderer: newRenderer
-    })
   })
-
-  function startFileWatcher (filePath) {
-    fs.watch(filePath, function (eventType, fileName) {
-      renderMDFromFile(filePath)
-    })
-  }
-
-  function renderMDFromFile (filePath) {
-    fs.readFile(filePath, 'utf8', function (err, data) {
-      if (err) {
-        console.error(err)
-      } else {
-        mainData.renderedMD = marked(data)
-      }
-    })
-  }
 
   export default {
     name: 'landing-page',
-    components: {Licenses},
+    components: {Licenses, ErrorModal},
     methods: {
       open (link) {
         this.$electron.shell.openExternal(link)
