@@ -8,6 +8,7 @@ describe('LandingPage.vue', () => {
       render: h => h(LandingPage)
     }).$mount()
 
-    expect(vm.$el.querySelector('.title').textContent).to.contain('Welcome to your new project!')
+    expect(vm.$el.querySelector('#welcome-text').textContent).to.contain('Welcome to MarkDawn :)')
+    mainWindow.webContents.send('test')
   })
 })

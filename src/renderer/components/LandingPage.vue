@@ -1,7 +1,7 @@
 <template>
   <div id="wrapper">
-    <div v-if="fileOpen" v-html="renderedMD" class="markdown-body"></div>
-    <div v-else class="markdown-body">
+    <div v-if="fileOpen" v-html="renderedMD" id="rendered-markdown" class="markdown-body"></div>
+    <div v-else id="welcome-text" class="markdown-body">
       <img src="~@/assets/background_small.jpg"><br>
       <b>Welcome to MarkDawn :)</b><br>
       Open a Markdown file from the "File" menu to render it. <br>
