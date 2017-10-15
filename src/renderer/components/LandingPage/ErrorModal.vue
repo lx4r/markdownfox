@@ -1,5 +1,5 @@
 <template>
-    <dialog class="markdown-body" id="error-modal">
+    <dialog class="markdown-body" id="error-modal" ref="errorModal">
         <h3 id="error-heading">Error</h3>
         <div v-html="errorMsg">
         </div>
@@ -19,14 +19,12 @@
     name: 'error-modal',
     mounted: function () {
       // register error dialog
-      const dialog = document.querySelector('#error-modal')
-      dialog.querySelector('.close').addEventListener('click', function () {
-        dialog.close()
+      this.$refs.errorModal.addEventListener('click', function () {
+        this.close()
       })
       ipcRenderer.on('show-error', (event, errorMsg) => {
-        console.log('got the message')
         mainData.errorMsg = errorMsg
-        dialog.showModal()
+        this.$refs.errorModal.showModal()
       })
     },
     data: function () {

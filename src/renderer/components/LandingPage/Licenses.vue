@@ -1,5 +1,5 @@
 <template>
-    <dialog class="markdown-body" id="oss-licenses">
+    <dialog class="markdown-body" id="oss-licenses" ref="OSSLicenses">
         <h2>Open Source licenses</h2>
         <div>
             <p id="oss-licenses-text">
@@ -158,13 +158,11 @@
     name: 'licenses',
     mounted: function () {
       // register licenses dialog
-      const dialog = document.querySelector('#oss-licenses')
-      console.log(dialog)
-      dialog.querySelector('.close').addEventListener('click', function () {
-        dialog.close()
+      this.$refs.OSSLicenses.addEventListener('click', function () {
+        this.close()
       })
       ipcRenderer.on('show-licenses', (event, arg) => {
-        dialog.showModal()
+        this.$refs.OSSLicenses.showModal()
       })
     }
   }
