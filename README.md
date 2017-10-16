@@ -1,4 +1,4 @@
-# MarkDawn
+# MarkdownFox
 
 > a simple Markdown viewer with PDF export
 
