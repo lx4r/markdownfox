@@ -1,7 +1,9 @@
-# MarkDawn
+<div align='center'>
+  <img width=300px src='http://files.l3r.de/markdownfox/logo.png'><br>
+  <h1>MarkdownFox</h1>
+</div>
 
-> a simple Markdown viewer with PDF export
-
+a simple Markdown viewer with PDF export
 [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
 
 ## Build Setup
