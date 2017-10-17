@@ -1,4 +1,7 @@
-# MarkdownFox
+<div align='center'>
+  <img width=200px src='http://files.l3r.de/markdownfox/logo.png'><br>
+  <h1>MarkdownFox</h1>
+</div>
 
 > a simple Markdown viewer with PDF export
 
