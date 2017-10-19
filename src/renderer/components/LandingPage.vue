@@ -69,7 +69,7 @@
     },
     data: function () {
       return {
-        renderedMD: '',
+        renderedMD: null,
         fileOpen: false
       }
     }
