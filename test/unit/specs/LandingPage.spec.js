@@ -27,7 +27,7 @@ describe('LandingPage.vue', () => {
   })
 
   describe('methods.updateView', () => {
-    it('should update the view with correctly renedered Markdown when the first file is opened', () => {
+    it('should update the view with correctly rendered Markdown when the first file is opened', () => {
       const Ctor = Vue.extend(LandingPage)
       const vm = new Ctor().$mount()
 
@@ -36,7 +36,34 @@ describe('LandingPage.vue', () => {
       vm.updateView('/dev/test/test.md', testMD)
 
       expect(vm.renderedMD).to.equal(expectedRenderedMD)
-      expect(vm.$el.querySelector('#rendered-markdown').textContent).to.contain(expectedRenderedMD)
+    })
+    it('should update the view with correctly rendered Markdown when the same file is updated', () => {
+      const Ctor = Vue.extend(LandingPage)
+      const vm = new Ctor().$mount()
+
+      const testMD = '# awesome'
+      const testMD2 = '# awesome42'
+      const expectedRenderedMD = '<h1 id="awesome42">awesome42</h1>\n'
+      vm.updateView('/dev/test/test.md', testMD)
+      vm.updateView('/dev/test/test.md', testMD2)
+
+      expect(vm.renderedMD).to.equal(expectedRenderedMD)
+
+      // TODO: test inner HTML
+      // expect(vm.$el.querySelector('#rendered-markdown').innerHTML).to.contain(expectedRenderedMD)
+    })
+
+    it('should update the view with correctly rendered Markdown when a second file is opened', () => {
+      const Ctor = Vue.extend(LandingPage)
+      const vm = new Ctor().$mount()
+
+      const testMD = '# awesome'
+      const testMD2 = '# awesome42'
+      const expectedRenderedMD = '<h1 id="awesome42">awesome42</h1>\n'
+      vm.updateView('/dev/test/test1.md', testMD)
+      vm.updateView('/dev/test/test2.md', testMD2)
+
+      expect(vm.renderedMD).to.equal(expectedRenderedMD)
     })
   })
 })
