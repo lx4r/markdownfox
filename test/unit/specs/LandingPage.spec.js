@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import LandingPage from '@/components/LandingPage'
+const path = require('path')
 
 describe('LandingPage.vue', () => {
   it('should have a created hook', () => {
@@ -36,6 +37,10 @@ describe('LandingPage.vue', () => {
       vm.updateView('/dev/test/test.md', testMD)
 
       expect(vm.renderedMD).to.equal(expectedRenderedMD)
+      // wait a "tick" after state change before asserting DOM updates
+      Vue.nextTick(() => {
+        expect(vm.$el.querySelector('#rendered-markdown').innerHTML).to.contain(expectedRenderedMD)
+      })
     })
     it('should update the view with correctly rendered Markdown when the same file is updated', () => {
       const Ctor = Vue.extend(LandingPage)
@@ -48,9 +53,10 @@ describe('LandingPage.vue', () => {
       vm.updateView('/dev/test/test.md', testMD2)
 
       expect(vm.renderedMD).to.equal(expectedRenderedMD)
-
-      // TODO: test inner HTML
-      // expect(vm.$el.querySelector('#rendered-markdown').innerHTML).to.contain(expectedRenderedMD)
+      // wait a "tick" after state change before asserting DOM updates
+      Vue.nextTick(() => {
+        expect(vm.$el.querySelector('#rendered-markdown').innerHTML).to.contain(expectedRenderedMD)
+      })
     })
 
     it('should update the view with correctly rendered Markdown when a second file is opened', () => {
@@ -64,6 +70,26 @@ describe('LandingPage.vue', () => {
       vm.updateView('/dev/test/test2.md', testMD2)
 
       expect(vm.renderedMD).to.equal(expectedRenderedMD)
+      // wait a "tick" after state change before asserting DOM updates
+      Vue.nextTick(() => {
+        expect(vm.$el.querySelector('#rendered-markdown').innerHTML).to.contain(expectedRenderedMD)
+      })
+    })
+
+    it('should ensure the rendered Markdown has correct image paths', () => {
+      const Ctor = Vue.extend(LandingPage)
+      const vm = new Ctor().$mount()
+
+      const testMD = '# awesome\n![](image.png)'
+      const expectedPath = path.resolve('/dev/test', 'image.png') // using resolve here as the wanted output is platform dependent, TODO: better solution?
+      const expectedRenderedMD = '<h1 id="awesome">awesome</h1><p><img src="' + expectedPath + '" alt=""></p>'
+      vm.updateView('/dev/test/test1.md', testMD)
+
+      expect(vm.renderedMD).to.equal(expectedRenderedMD)
+      /* // wait a "tick" after state change before asserting DOM updates
+      Vue.nextTick(() => {
+        expect(vm.$el.querySelector('#rendered-markdown').innerHTML).to.contain(expectedRenderedMD)
+      }) */
     })
   })
 })
