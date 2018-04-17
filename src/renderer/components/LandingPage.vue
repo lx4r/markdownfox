@@ -1,12 +1,13 @@
 <template>
   <div id="wrapper">
     <div v-if="fileOpen" v-html="renderedMD" class="markdown-body"></div>
-    <div v-else class="markdown-body">
+    <div v-else class="markdown-body" id="main-markdown">
       <img src="~@/assets/logo.png"><br>
       <b>Welcome to MarkdownFox :)</b><br>
       Open a Markdown file from the "File" menu to render it. <br>
       MarkdownFox will then watch for changes to the file and update the preview.<br>
-      PDF export is also available from the "File" menu.
+      PDF export is also available from the "File" menu.<br>
+      You can use <code>$$</code> to surround LaTeX-like forumulae that will be converted by <a href="https://github.com/Khan/KaTeX">KaTeX</a>.
     </div>
     <licenses></licenses>
     <error-modal></error-modal>
@@ -16,10 +17,10 @@
 <script>
   import Licenses from './LandingPage/Licenses.vue'
   import ErrorModal from './LandingPage/ErrorModal.vue'
+  import KatexAutoRender from 'katex/contrib/auto-render/auto-render'
   const path = require('path')
   const ipcRenderer = require('electron').ipcRenderer
   const marked = require('marked')
-
   let currentFilePath = null
 
   let mainData = {
@@ -70,8 +71,35 @@
     },
     data: function () {
       return mainData
+    },
+    updated: function () {
+      // TODO: use smaller scope here
+      KatexAutoRender(document.body, {delimiters: [
+        {
+          left: '$$',
+          right: '$$',
+          display: false
+        }
+      ]})
     }
   }
 </script>
 
-<style src="../assets/main.css"></style>
+<style scoped>
+.markdown-body {
+    box-sizing: border-box;
+    min-width: 200px;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 45px;
+}
+
+@media (max-width: 767px) {
+    .markdown-body {
+        padding: 15px;
+    }
+}
+</style>
+<style scoped src="../assets/github-markdown-css.css"></style>
+<style scoped src="../../../node_modules/katex/dist/katex.min.css"></style>
+
