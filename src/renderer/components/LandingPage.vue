@@ -6,7 +6,8 @@
       <b>Welcome to MarkdownFox :)</b><br>
       Open a Markdown file from the "File" menu to render it. <br>
       MarkdownFox will then watch for changes to the file and update the preview.<br>
-      PDF export is also available from the "File" menu.
+      PDF export is also available from the "File" menu.<br>
+      You can use <code>$$</code> to surround LaTeX-like forumulae that will be converted by <a href="https://github.com/Khan/KaTeX">KaTeX</a>.
     </div>
     <licenses></licenses>
     <error-modal></error-modal>
@@ -57,11 +58,6 @@
       })
 
       mainData.renderedMD = marked(data)
-      /* const markdownWrapper = document.getElementById('main-markdown')
-      console.log(markdownWrapper)
-      KatexAutoRender(markdownWrapper)
-      console.log(KatexAutoRender)
-      console.log(document.body) */
     }
   })
 
@@ -77,17 +73,33 @@
       return mainData
     },
     updated: function () {
-      // const markdownWrapper = document.getElementById('main-markdown')
       // TODO: use smaller scope here
-      KatexAutoRender(document.body, [
+      KatexAutoRender(document.body, {delimiters: [
         {
           left: '$$',
           right: '$$',
           display: false
         }
-      ])
+      ]})
     }
   }
 </script>
 
-<style src="../assets/main.css"></style>
+<style scoped>
+.markdown-body {
+    box-sizing: border-box;
+    min-width: 200px;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 45px;
+}
+
+@media (max-width: 767px) {
+    .markdown-body {
+        padding: 15px;
+    }
+}
+</style>
+<style scoped src="../assets/github-markdown-css.css"></style>
+<style scoped src="../../../node_modules/katex/dist/katex.min.css"></style>
+
