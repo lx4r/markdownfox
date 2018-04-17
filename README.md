@@ -37,5 +37,6 @@ npm run lint
 - [Marked](https://github.com/chjj/marked) by chjj
 - [highlight.js](https://github.com/isagalaev/highlight.js) by isagalaev
 - [github-markdown-css](https://github.com/sindresorhus/github-markdown-css) by sindresorhus
+- [KaTeX](https://github.com/Khan/KaTeX) by Khan Academy
 
 Open Source licenses can be found in `OPENSOURCE_LICENSES`
