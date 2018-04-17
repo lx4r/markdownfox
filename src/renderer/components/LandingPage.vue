@@ -57,11 +57,11 @@
       })
 
       mainData.renderedMD = marked(data)
-      const markdownWrapper = document.getElementById('main-markdown')
+      /* const markdownWrapper = document.getElementById('main-markdown')
       console.log(markdownWrapper)
       KatexAutoRender(markdownWrapper)
       console.log(KatexAutoRender)
-      console.log(document.body)
+      console.log(document.body) */
     }
   })
 
@@ -75,6 +75,17 @@
     },
     data: function () {
       return mainData
+    },
+    updated: function () {
+      // const markdownWrapper = document.getElementById('main-markdown')
+      // TODO: use smaller scope here
+      KatexAutoRender(document.body, [
+        {
+          left: '$$',
+          right: '$$',
+          display: false
+        }
+      ])
     }
   }
 </script>
