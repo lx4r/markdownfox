@@ -1,7 +1,7 @@
 <template>
   <div id="wrapper">
     <div v-if="fileOpen" v-html="renderedMD" class="markdown-body"></div>
-    <div v-else class="markdown-body">
+    <div v-else class="markdown-body" id="main-markdown">
       <img src="~@/assets/logo.png"><br>
       <b>Welcome to MarkdownFox :)</b><br>
       Open a Markdown file from the "File" menu to render it. <br>
@@ -16,10 +16,10 @@
 <script>
   import Licenses from './LandingPage/Licenses.vue'
   import ErrorModal from './LandingPage/ErrorModal.vue'
+  import KatexAutoRender from 'katex/contrib/auto-render/auto-render'
   const path = require('path')
   const ipcRenderer = require('electron').ipcRenderer
   const marked = require('marked')
-
   let currentFilePath = null
 
   let mainData = {
@@ -57,6 +57,11 @@
       })
 
       mainData.renderedMD = marked(data)
+      const markdownWrapper = document.getElementById('main-markdown')
+      console.log(markdownWrapper)
+      KatexAutoRender(markdownWrapper)
+      console.log(KatexAutoRender)
+      console.log(document.body)
     }
   })
 
