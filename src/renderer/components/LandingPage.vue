@@ -2,10 +2,10 @@
   <div id="wrapper">
     <div v-if="fileOpen" v-html="renderedMD" class="markdown-body"></div>
     <div v-else class="markdown-body">
-      <img src="~@/assets/background_small.jpg"><br>
-      <b>Welcome to MarkDawn :)</b><br>
+      <img src="~@/assets/logo.png"><br>
+      <b>Welcome to MarkdownFox :)</b><br>
       Open a Markdown file from the "File" menu to render it. <br>
-      MarkDawn will then watch for changes to the file and update the preview.<br>
+      MarkdownFox will then watch for changes to the file and update the preview.<br>
       PDF export is also available from the "File" menu.
     </div>
     <licenses></licenses>

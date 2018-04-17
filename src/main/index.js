@@ -36,7 +36,7 @@ function createWindow () {
   // MENU TESTING
   const template = [
     {
-      label: 'MarkDawn',
+      label: 'MarkdownFox',
       submenu: [
         {role: 'quit'}
       ]
@@ -121,8 +121,8 @@ function createWindow () {
           click () { mainWindow.webContents.send('show-licenses') }
         },
         {
-          label: 'MarkDawn on Github',
-          click () { require('electron').shell.openExternal('https://github.com/lx4r/markdawn') }
+          label: 'MarkdownFox on Github',
+          click () { require('electron').shell.openExternal('https://github.com/lx4r/markdownfox') }
         }
       ]
     }

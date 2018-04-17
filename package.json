@@ -1,5 +1,5 @@
 {
-  "name": "markdawn",
+  "name": "markdownfox",
   "version": "0.0.0",
   "author": "lx4r <hallo@l3r.de>",
   "description": "a simple markdown previewer",
@@ -22,7 +22,7 @@
     "postinstall": "npm run lint:fix"
   },
   "build": {
-    "productName": "markdawn",
+    "productName": "MarkdownFox",
     "appId": "org.simulatedgreg.electron-vue",
     "directories": {
       "output": "build"

@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    name: 'markdawn'
+    name: 'MarkdownFox'
   }
 </script>
 
