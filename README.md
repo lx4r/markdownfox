@@ -14,6 +14,13 @@ a simple Markdown viewer with PDF export
 
 </div>
 
+## Features
+
+- updates preview when you make changes to the Markdown file
+- supports [GFM (GitHub Flavored Markdown)](https://github.github.com/gfm/)
+- renders LaTeX-like formulae if they're surrounded by `$$`
+- PDF export
+
 ## Build Setup
 
 ``` bash
@@ -45,4 +52,8 @@ npm run lint
 - [github-markdown-css](https://github.com/sindresorhus/github-markdown-css) by sindresorhus
 - [KaTeX](https://github.com/Khan/KaTeX) by Khan Academy
 
-Open Source licenses can be found in `OPENSOURCE_LICENSES`
+
+## License
+
+[MIT](LICENSE)  
+Open Source licenses can be found in [OPENSOURCE_LICENSES](OPENSOURCE_LICENSES) and in the app
