@@ -85,7 +85,7 @@
   }
 </script>
 
-<style scoped>
+<style>
 .markdown-body {
     box-sizing: border-box;
     min-width: 200px;
@@ -100,6 +100,6 @@
     }
 }
 </style>
-<style scoped src="../assets/github-markdown-css.css"></style>
-<style scoped src="../../../node_modules/katex/dist/katex.min.css"></style>
+<style src="../assets/github-markdown-css.css"></style>
+<style src="../../../node_modules/katex/dist/katex.min.css"></style>
 
