@@ -20,6 +20,7 @@ a simple Markdown viewer with PDF export
 - supports [GFM (GitHub Flavored Markdown)](https://github.github.com/gfm/)
 - renders LaTeX-like formulae if they're surrounded by `$$`
 - PDF export
+- syntax highlighting in code blocks
 
 ## Downloads
 
