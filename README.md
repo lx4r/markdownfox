@@ -3,10 +3,18 @@
   <h1>MarkdownFox</h1>
 </div>
 
+<div align="center">
+  
 > a simple Markdown viewer with PDF export
 
-[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)  
-[![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
+</div>
+
+<div align="center">
+  
+  [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)  
+  [![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
+
+</div>
 
 ## Build Setup
 
