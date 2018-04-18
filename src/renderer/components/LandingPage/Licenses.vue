@@ -191,7 +191,6 @@
     mounted: function () {
       // register licenses dialog
       const dialog = document.querySelector('#oss-licenses')
-      console.log(dialog)
       dialog.querySelector('.close').addEventListener('click', function () {
         dialog.close()
       })
