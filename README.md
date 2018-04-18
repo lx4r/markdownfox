@@ -23,7 +23,7 @@ a simple Markdown viewer with PDF export
 
 ## Downloads
 
-... can be found under [releases](https://github.com/lx4r/markdownfox/releases)
+... can be found at [releases](https://github.com/lx4r/markdownfox/releases)
 
 ## Build Setup
 
