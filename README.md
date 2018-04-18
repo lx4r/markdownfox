@@ -3,10 +3,8 @@
   <h1>MarkdownFox</h1>
 </div>
 
-<div align="center">
-  
-> a simple Markdown viewer with PDF export
-
+<p align="center">  
+a simple Markdown viewer with PDF export
 </div>
 
 <div align="center">
