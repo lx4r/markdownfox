@@ -7,7 +7,7 @@
       Open a Markdown file from the "File" menu to render it. <br>
       MarkdownFox will then watch for changes to the file and update the preview.<br>
       PDF export is also available from the "File" menu.<br>
-      You can use <code>$$</code> to surround LaTeX-like forumulae that will be converted by <a href="https://github.com/Khan/KaTeX">KaTeX</a>.
+      You can use <code>$$</code> to surround LaTeX-like formulae that will be converted by <a href="https://github.com/Khan/KaTeX">KaTeX</a>.
     </div>
     <licenses></licenses>
     <error-modal></error-modal>
