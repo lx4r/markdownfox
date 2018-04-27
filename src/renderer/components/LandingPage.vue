@@ -99,6 +99,13 @@
         padding: 15px;
     }
 }
+
+/* wrap long lines of code */
+.markdown-body pre > code {
+  word-break: break-all !important;
+  white-space: pre-wrap !important;
+  overflow-wrap: break-word !important;
+}
 </style>
 <style src="../assets/github-markdown-css.css"></style>
 <style src="../../../node_modules/katex/dist/katex.min.css"></style>
