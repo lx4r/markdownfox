@@ -1,6 +1,6 @@
 {
   "name": "markdownfox",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "lx4r <hallo@l3r.de>",
   "description": "a simple Markdown viewer with PDF export",
   "license": "MIT",
