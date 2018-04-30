@@ -26,6 +26,10 @@ a simple Markdown viewer with PDF export
 
 ... can be found at [releases](https://github.com/lx4r/markdownfox/releases)
 
+## Known issues
+
+- When using gedit only the first change to the Markdown file triggers an update of the preview in MarkdownFox. This doesn't seem to happen with other editors. [Issue regarding this bug](https://github.com/lx4r/markdownfox/issues/13)
+
 ## Build Setup
 
 ``` bash
@@ -41,10 +45,8 @@ npm run build
 # run unit & end-to-end tests
 npm test
 
-
 # lint all JS/Vue component files in `src/`
 npm run lint
-
 ```
 
 ## Powered by
