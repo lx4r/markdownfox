@@ -4,7 +4,7 @@
 </div>
 
 <p align="center">  
-a simple Markdown viewer with PDF export
+a simple Markdown viewer with auto update and PDF export
 </div>
 
 <div align="center">
