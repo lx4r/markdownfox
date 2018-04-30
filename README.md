@@ -14,6 +14,8 @@ a simple Markdown viewer with PDF export
 
 </div>
 
+![demo of MarkdowFox](/screens/demo.gif)
+
 ## Features
 
 - updates preview when you make changes to the Markdown file
