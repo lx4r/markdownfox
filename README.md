@@ -53,8 +53,8 @@ npm run lint
 
 ## Powered by
 
-- [Vue.js](https://vuejs.org/) by Evan You
-- [Electron](https://electron.atom.io/) by GitHub Inc.
+- [Vue.js](https://vuejs.org/)
+- [Electron](https://electron.atom.io/)
 - [Electron-Vue](https://github.com/SimulatedGREG/electron-vue) by SimulatedGREG
 - [Marked](https://github.com/chjj/marked) by chjj
 - [highlight.js](https://github.com/isagalaev/highlight.js) by isagalaev
