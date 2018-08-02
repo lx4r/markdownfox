@@ -11,12 +11,14 @@
     </div>
     <licenses></licenses>
     <error-modal></error-modal>
+    <settings-modal></settings-modal>
   </div>
 </template>
 
 <script>
   import Licenses from './LandingPage/Licenses.vue'
   import ErrorModal from './LandingPage/ErrorModal.vue'
+  import SettingsModal from './LandingPage/SettingsModal.vue'
   import KatexAutoRender from 'katex/contrib/auto-render/auto-render'
   const path = require('path')
   const ipcRenderer = require('electron').ipcRenderer
@@ -63,7 +65,7 @@
 
   export default {
     name: 'landing-page',
-    components: {Licenses, ErrorModal},
+    components: {Licenses, ErrorModal, SettingsModal},
     methods: {
       open (link) {
         this.$electron.shell.openExternal(link)
